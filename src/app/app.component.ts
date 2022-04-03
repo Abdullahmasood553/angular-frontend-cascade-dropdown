@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { filter, map } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import { DataService } from './service/data.service';
 
 @Component({
@@ -26,9 +27,9 @@ export class AppComponent {
 
 
   getProductSubCategory(event: any) {
-    console.log(event.target.value);
-    this.dataService.getProductSubCategory().pipe().subscribe(response => { 
- 
+    this.dataService.getProductSubCategory().subscribe((response:any) => { 
+      this.subCat = response['product_sub_category'].filter((response: any) => response.product_id == event.target.value);
+      console.log(this.subCat);
     });
   }
 }
