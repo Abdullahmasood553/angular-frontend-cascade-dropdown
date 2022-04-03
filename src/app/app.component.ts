@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { filter, map } from 'rxjs';
 import { DataService } from './service/data.service';
 
 @Component({
@@ -8,18 +9,26 @@ import { DataService } from './service/data.service';
 })
 export class AppComponent {
   title = 'angular-dropdown-app';
-  items:any = [];
+  products:any = [];
   subCat: any = [];
-  constructor(private data: DataService) {}
+  constructor(private dataService: DataService) {}
 
   ngOnInit() {
-    this.items = this.data.items();
-    console.log(this.items);
+    this.getProducts();
+  }
+
+  getProducts() { 
+    this.dataService.getProducts().subscribe(response => {
+      this.products = response;
+    });
+  
   }
 
 
-  onSelect(event: any) {
-    // console.log(event.target.value);
-    this.subCat = this.data.subCat().filter(e => e.id == event.target.value);
+  getProductSubCategory(event: any) {
+    console.log(event.target.value);
+    this.dataService.getProductSubCategory().pipe().subscribe(response => { 
+ 
+    });
   }
 }

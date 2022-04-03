@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,50 +9,12 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  items() {
-    return [
-      {
-        id: 1,
-        name: "Fruits"
-      },
-      {
-        id: 2,
-        name: 'Vegetables'
-      },
-      {
-        id: 3,
-        name: 'Snacks'
-      }
-    ]
-  }
+  getProducts() {
+    return this.http.get(environment.apiUrl + `/products`);
+}
 
-
-  subCat() {
-    return [
-      {
-        id: 1,
-        name: "Banana"
-      },
-      {
-        id: 1,
-        name: "Apple"
-      },
-      {
-        id: 2,
-        name: "Onion"
-      },
-      {
-        id: 2,
-        name: "Potato"
-      },
-      {
-        id: 3,
-        name: "Chips"
-      },
-      {
-        id: 3,
-        name: "Choclate"
-      }
-    ]
-  }
+getProductSubCategory() {
+  return this.http.get(environment.apiUrl + `/product_sub_category`);
+}
+  
 }
