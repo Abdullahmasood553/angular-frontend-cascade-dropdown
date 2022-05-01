@@ -1,19 +1,19 @@
 <div class="container">
+  <h2 class="bg-dark text-white p-4 text-center">Cascaded Multi Dropdown in Angular</h2>
   <div class="row">
-    <div class="col-md-6">
-      <h2 class="bg-dark text-white p-4 text-center">Cascaded Multi Dropdown</h2>
+    <div class="col-md-8">
       <form>
         <div class="form-group">
-          <label>Select Product</label>
-          <select class="form-control" (change)="getProductSubCategory($event)">
-            <option *ngFor="let data of products['products']" value="{{ data.id }}">{{ data.product_name }}</option>
+          <select name="selectedProduct.id" class="form-control" (change)="onSelect($event)">
+            <option value="0">Select Product</option>
+            <option *ngFor="let data of products['products']" value="{{ data.id }}">{{ data.label }}</option>
           </select>
         </div>
 
-        <div class="form-group">
-          <label>Select Subcategory</label>
+        <div class="form-group mt-4">
           <select class="form-control">
-            <option *ngFor="let data of subCat">{{ data.title }}</option>
+            <option value="0">Select Subcategory</option>
+            <option *ngFor="let data of subCat" value="{{data.id}}">{{ data.title }}</option>
           </select>
         </div>
       </form>
