@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { map } from 'rxjs/operators';
-
 import { DataService } from './service/data.service';
 
 @Component({
@@ -22,7 +20,6 @@ export class AppComponent {
     this.dataService.getProducts().subscribe(response => {
       this.products = response;
     });
-  
   }
 
 
